@@ -17,14 +17,14 @@ echo "---"
 while :; do
   # Feed prompt to agent - fresh context each iteration
   cat "$PROMPT_FILE" | amp --print
-  
+
   # Check for completion signal
   if grep -q '<promise>COMPLETE</promise>' progress.txt 2>/dev/null; then
     echo "---"
     echo "Ralph complete. All tasks done."
     exit 0
   fi
-  
+
   echo "---"
   echo "Loop iteration complete. Starting fresh context..."
   sleep 2

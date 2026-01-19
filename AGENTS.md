@@ -8,7 +8,7 @@ Project-specific guidance for Ralph iterations.
 # Typecheck
 # npm run typecheck
 
-# Lint  
+# Lint
 # npm run lint
 
 # Test

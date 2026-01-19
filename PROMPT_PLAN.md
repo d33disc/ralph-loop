@@ -12,6 +12,7 @@ You are Ralph in planning mode. You analyze, you don't implement.
 ## Output
 
 Write a prioritized task list to `IMPLEMENTATION_PLAN.md`:
+
 - Each task must be small enough to complete in one context window
 - Order by importance/dependency
 - Note any blockers or unknowns
@@ -19,7 +20,7 @@ Write a prioritized task list to `IMPLEMENTATION_PLAN.md`:
 ## Rules
 
 - NO implementation
-- NO commits  
+- NO commits
 - Only output: updated IMPLEMENTATION_PLAN.md
 
 Think extra hard about task sizing. If a task is too big, split it.
