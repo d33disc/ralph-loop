@@ -13,8 +13,8 @@ fi
 
 # Map CLI name to command
 case "$CLI" in
-  amp)      CLI_CMD="amp --print" ;;
-  claude)   CLI_CMD="claude --dangerously-skip-permissions" ;;
+  amp)      CLI_CMD="amp" ;;
+  claude)   CLI_CMD="claude --dangerously-skip-permissions -p" ;;
   gemini)   CLI_CMD="gemini" ;;
   qwen)     CLI_CMD="qwen" ;;
   codex)    CLI_CMD="codex" ;;
