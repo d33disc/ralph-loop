@@ -1,29 +1,23 @@
-# prek config - runs after each Ralph iteration to catch errors
-# Install: brew install j178/tap/prek
+# prek config - optimized for Ralph loop
+# Uses repo: builtin for zero-network, zero-setup Rust-native hooks
+# Install: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/j178/prek/releases/download/v0.2.30/prek-installer.sh | sh
 # Run: prek run --all-files
 
+minimum_prek_version: "0.2.30"
+
 repos:
-  # Trailing whitespace, end-of-file fixer, merge conflict check
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+  # Built-in Rust-native hooks - instant, no network, no Python
+  - repo: builtin
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-merge-conflict
       - id: check-added-large-files
         args: ['--maxkb=500']
-
-  # YAML/JSON/TOML validation
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
       - id: check-yaml
       - id: check-json
       - id: check-toml
-
-  # Markdown linting
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.43.0
-    hooks:
-      - id: markdownlint
-        args: ['--fix', '--disable', 'MD013', 'MD033', 'MD041', '--']
+      - id: detect-private-key
+      # Uncomment to protect branches from direct commits
+      # - id: no-commit-to-branch
+      #   args: ['--branch', 'main', '--branch', 'master']
