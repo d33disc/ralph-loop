@@ -9,7 +9,7 @@ First-principles implementation of Geoff Huntley's Ralph technique for autonomou
 Ralph is a bash loop that runs an AI coding agent repeatedly until all tasks are complete. Each iteration gets fresh context—memory persists via git commits and files on disk, not context window.
 
 ```bash
-while :; do cat PROMPT.md | amp ; done
+while :; do cat PROMPT.md | claude --dangerously-skip-permissions -p ; done
 ```
 
 That's the entire technique. Everything else is scaffolding.
@@ -42,11 +42,14 @@ Add your project's build/test/lint commands so Ralph knows how to validate work.
 ### 5. Run Ralph
 
 ```bash
-./ralph.sh              # Uses amp by default
-CLI=claude ./ralph.sh   # Use Claude Code instead
+./ralph.sh              # Uses claude by default
+CLI=amp ./ralph.sh      # Use amp instead
 ```
 
 Ralph will:
+
+Ralph will:
+
 1. Read PROMPT.md for instructions
 2. Study specs/ and pick a task
 3. Implement one task
@@ -60,7 +63,7 @@ Add to your `~/.zshrc` or `~/.bashrc` for convenience:
 
 ```bash
 ralph() {
-  cli="${1:-amp}"
+  cli="${1:-claude}"
   prompt="${2:-PROMPT.md}"
 
   if [ ! -f "$prompt" ]; then
@@ -69,8 +72,8 @@ ralph() {
   fi
 
   case "$cli" in
-    amp)      cli_cmd="amp" ;;
     claude)   cli_cmd="claude --dangerously-skip-permissions -p" ;;
+    amp)      cli_cmd="amp" ;;
     gemini)   cli_cmd="gemini" ;;
     *)        cli_cmd="$cli" ;;
   esac
@@ -94,7 +97,7 @@ ralph() {
 }
 ```
 
-Then: `ralph`, `ralph claude`, `ralph amp PROMPT_PLAN.md`
+Then: `ralph`, `ralph amp`, `ralph claude PROMPT_PLAN.md`
 
 ## Principles
 
@@ -107,7 +110,7 @@ Then: `ralph`, `ralph claude`, `ralph amp PROMPT_PLAN.md`
 ## Files
 
 | File | Purpose |
-|------|---------|
+| ------ | --------- |
 | `ralph.sh` | The bash loop |
 | `PROMPT.md` | Building mode instructions (one task → validate → commit → exit) |
 | `PROMPT_PLAN.md` | Planning mode (gap analysis only, no implementation) |
@@ -120,11 +123,13 @@ Then: `ralph`, `ralph claude`, `ralph amp PROMPT_PLAN.md`
 ## Two Modes
 
 **PLANNING** (`PROMPT_FILE=PROMPT_PLAN.md ./ralph.sh`)
+
 - Compares specs against existing code
 - Generates prioritized IMPLEMENTATION_PLAN.md
 - No implementation, no commits
 
 **BUILDING** (default)
+
 - Picks one task from IMPLEMENTATION_PLAN.md
 - Implements, validates, commits
 - Updates plan and progress.txt

@@ -4,7 +4,7 @@
 set -euo pipefail
 
 PROMPT_FILE="${PROMPT_FILE:-PROMPT.md}"
-CLI="${CLI:-amp}"
+CLI="${CLI:-claude}"
 
 if [[ ! -f "$PROMPT_FILE" ]]; then
   echo "Error: $PROMPT_FILE not found" >&2
@@ -14,7 +14,7 @@ fi
 # Map CLI name to command
 case "$CLI" in
   amp)      CLI_CMD="amp" ;;
-  claude)   CLI_CMD="claude --dangerously-skip-permissions -p" ;;
+  claude)   CLI_CMD="/Users/davis/.local/bin/claude --dangerously-skip-permissions -p --no-session-persistence" ;;
   gemini)   CLI_CMD="gemini" ;;
   qwen)     CLI_CMD="qwen" ;;
   codex)    CLI_CMD="codex" ;;
