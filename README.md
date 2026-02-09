@@ -72,7 +72,7 @@ ralph() {
   fi
 
   case "$cli" in
-    claude)   cli_cmd="claude --dangerously-skip-permissions -p" ;;
+    claude)   cli_cmd="claude --dangerously-skip-permissions -p --no-session-persistence" ;;
     amp)      cli_cmd="amp" ;;
     gemini)   cli_cmd="gemini" ;;
     *)        cli_cmd="$cli" ;;
