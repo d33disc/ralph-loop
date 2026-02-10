@@ -17,6 +17,7 @@ When I'm managing multiple tasks across different projects, I want a simple comm
 ## User Stories
 
 ### Story 1: Adding Tasks
+
 ```bash
 $ task add "Write README documentation"
 ✓ Added task #1
@@ -26,6 +27,7 @@ $ task add "Implement login feature"
 ```
 
 ### Story 2: Listing Tasks
+
 ```bash
 $ task list
  1 [ ] Write README documentation
@@ -33,6 +35,7 @@ $ task list
 ```
 
 ### Story 3: Completing Tasks
+
 ```bash
 $ task done 1
 ✓ Marked task #1 as done
