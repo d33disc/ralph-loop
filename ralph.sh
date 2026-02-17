@@ -21,7 +21,7 @@ fi
 # Map CLI name to command
 case "$CLI" in
   amp)      CLI_CMD="amp" ;;
-  claude)   CLI_CMD="claude --dangerously-skip-permissions -p --no-session-persistence" ;;
+  claude)   CLI_CMD="claude --model opus --dangerously-skip-permissions -p --no-session-persistence" ;;
   gemini)   CLI_CMD="gemini" ;;
   qwen)     CLI_CMD="qwen" ;;
   codex)    CLI_CMD="codex" ;;
@@ -36,7 +36,7 @@ echo "---"
 
 iteration=0
 while :; do
-  ((iteration++))
+  (( iteration += 1 ))
 
   if [[ $iteration -gt $MAX_ITERATIONS ]]; then
     echo "---"
