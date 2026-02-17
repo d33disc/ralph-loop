@@ -72,7 +72,7 @@ ralph() {
   fi
 
   case "$cli" in
-    claude)   cli_cmd="claude --dangerously-skip-permissions -p --no-session-persistence" ;;
+    claude)   cli_cmd="claude --model opus --dangerously-skip-permissions -p --no-session-persistence" ;;
     amp)      cli_cmd="amp" ;;
     gemini)   cli_cmd="gemini" ;;
     *)        cli_cmd="$cli" ;;
@@ -81,7 +81,7 @@ ralph() {
   echo "Ralph loop: $cli_cmd < $prompt"
 
   while :; do
-    cat "$prompt" | $cli_cmd
+    cat "$prompt" | eval "$cli_cmd"
 
     if command -v prek >/dev/null 2>&1 && [ -f .pre-commit-config.yaml ]; then
       prek run --all-files || echo "prek found issues - next iteration will fix"
