@@ -9,7 +9,7 @@ First-principles implementation of Geoff Huntley's Ralph technique for autonomou
 Ralph is a bash loop that runs an AI coding agent repeatedly until all tasks are complete. Each iteration gets fresh context—memory persists via git commits and files on disk, not context window.
 
 ```bash
-while :; do cat PROMPT.md | claude --dangerously-skip-permissions -p ; done
+while :; do cat PROMPT.md | claude --model opus --dangerously-skip-permissions -p ; done
 ```
 
 That's the entire technique. Everything else is scaffolding.
