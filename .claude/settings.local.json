@@ -59,7 +59,8 @@
       "Bash(uniq:*)",
       "Bash(wc:*)",
       "Bash(which:*)",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "Bash(gh issue create:*)"
     ],
     "deny": [],
     "ask": []
